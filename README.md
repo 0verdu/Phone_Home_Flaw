@@ -160,7 +160,7 @@ This README is intentionally non-technical.
 | **Vulnerability name** | Phone Home Flaw |
 | **Severity** | Critical |
 | **CVE** | Pending assignment |
-| **Public disclosure date** | 01-16-2025 |
+| **Public disclosure date** | 01-16-2026 |
 
 ---
 

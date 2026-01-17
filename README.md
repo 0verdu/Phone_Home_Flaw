@@ -149,7 +149,7 @@ It does mean that coordination between chipset vendors, device makers, and carri
 This README is intentionally non-technical.
 
 - **Vulnerability Report** (attached)
- `**Evidence package** available upon request `
+ `Evidence package available upon request`
 
 ---
 

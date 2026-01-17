@@ -17,7 +17,7 @@ This issue affects the cellular hardware itself, not a specific phone brand or a
 
 ---
 
-## What Is the Phone Home Flaw?
+## What Is the "Phone Home" flaw?
 
 Modern smartphones and connected devices contain a dedicated chip that handles cellular and satellite communication. This chip operates independently from apps and the operating system.
 

@@ -28,7 +28,7 @@ The Phone Home Flaw is a defect in how that chip handles certain internal messag
 │                     EVENT FLOW                              │
 └─────────────────────────────────────────────────────────────┘
 
-    Malicious Signal               Vulnerable Chip          Device Impact
+   Corrupted Signal                Vulnerable Chip         Device Impact
     (5G/Satellite)                 (Snapdragon X65)              
                                                             
          📡                              ⚠️                      📱

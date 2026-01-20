@@ -1,4 +1,4 @@
-# Buffer Overflow in Qualcomm Snapdragon X65 Baseband
+# Buffer Overflow in Qualcomm Snapdragon X65 & X70 Basebands
 
 ### Satellite Modem Trigger with Remote Attack Surface
 
@@ -9,7 +9,7 @@
 
 ## Plain-Language Summary 
 
-A serious flaw has been indentified in widely used cellular chip "`Qualcomm Snapdragon X65`" that allows devices to be remotely disrupted without installing malware, clicking links, or requiring user interaction.
+A serious flaw has been indentified in widely used cellular chips—specifically the **Qualcomm Snapdragon X65 and X70**—that allows devices to be remotely disrupted without installing malware, clicking links, or requiring user interaction.
 
 In certain conditions, a malicious cellular signal alone, including specially crafted 5G or satellite transmissions, could cause phones, laptops, and connected devices to suddenly lose service or reboot. To everyday users, this would look exactly like a normal carrier outage.
 
@@ -29,7 +29,7 @@ The Phone Home Flaw is a defect in how that chip handles certain internal messag
 └─────────────────────────────────────────────────────────────┘
 
    Corrupted Signal                Vulnerable Chip         Device Impact
-    (5G/Satellite)                 (Snapdragon X65)              
+    (5G/Satellite)                (Snapdragon X65X70)              
                                                             
          📡                              ⚠️                      📱
           │                              │                       │
@@ -67,8 +67,8 @@ The Phone Home Flaw is a defect in how that chip handles certain internal messag
     ─────────────              ──────────              ──────────────
     • iPhone (recent)          • 5G-enabled            • Industrial
     • Android (recent)           laptops                 equipment
-    • Multi-carrier                                    • Connected
-      devices                                            infrastructure
+    • Modern 5G                                        • Connected
+      hotspots                                           infrastructure
 
            Multiple manufacturers • Multiple operating systems
 ```

@@ -9,7 +9,7 @@
 
 ## Plain-Language Summary 
 
-A serious flaw has been indentified in widely used cellular chips—specifically the **Qualcomm Snapdragon X65 and X70**—that allows devices to be remotely disrupted without installing malware, clicking links, or requiring user interaction.
+A serious flaw has been identified in widely used cellular chips... specifically the **Qualcomm Snapdragon X65 and X70**... that allows devices to be remotely disrupted without installing malware, clicking links, or requiring user interaction.
 
 In certain conditions, a malicious cellular signal alone, including specially crafted 5G or satellite transmissions, could cause phones, laptops, and connected devices to suddenly lose service or reboot. To everyday users, this would look exactly like a normal carrier outage.
 
@@ -17,34 +17,41 @@ This issue affects the cellular hardware itself, not a specific phone brand or a
 
 ---
 
-## What Is the "Phone Home" flaw?
+## What Is the "Phone Home" Flaw?
 
 Modern smartphones and connected devices contain a dedicated chip that handles cellular and satellite communication. This chip operates independently from apps and the operating system.
 
-The Phone Home Flaw is a defect in how that chip handles certain internal messages. Under reachable conditions, the chip can enter a failure state that forces the entire device to reset or lose connectivity.
+The Phone Home Flaw is a defect in how that chip handles internal data when the satellite modem changes state. Under reachable conditions, the chip can enter a failure state that forces the entire device to reset or lose connectivity.
 
 ```
 ┌─────────────────────────────────────────────────────────────┐
-│                     EVENT FLOW                              │
+│                   HOW THE FLAW WORKS                        │
 └─────────────────────────────────────────────────────────────┘
 
-   Corrupted Signal                Vulnerable Chip         Device Impact
-    (5G/Satellite)               (Snapdragon X65/X70)              
+  Malicious Signal          Phone's Chip            What You See
+   (from tower or             Crashes                        
+    satellite)              
                                                             
-         📡                              ⚠️                      📱
-          │                              │                       │
-          │   Crafted message            │   Enters failure      │
-          ├─────────────────────────────>│   state               │
-          │                              │                       │
-          │                              ├──────────────────────>│
-          │                              │                       │
-          │                              │                  ┌────▼────┐
-          │                              │                  │ Reboot  │
-          │                              │                  │   or    │
-          │                              │                  │No Service│
-                                                            └─────────┘
+       📡                        💥                      📱
+        │                        │                       │
+        │  Specially crafted     │  Internal             │
+        │  transmission          │  failure              │
+        ├───────────────────────>│                       │
+        │                        │                       │
+        │                        ├──────────────────────>│
+        │                        │                       │
+        │                        │                  ┌────▼────┐
+        │                        │                  │ Phone   │
+        │                        │                  │ Reboots │
+        │                        │                  │   or    │
+        │                        │                  │ Loses   │
+        │                        │                  │ Service │
+                                                    └─────────┘
+                                             Advanced exploitation may enable
+                                             additional unauthorized access
 
-    NO USER INTERACTION REQUIRED
+              NO USER ACTION REQUIRED
+        Looks like a normal network outage   
 ```
 
 **Importantly:**
@@ -60,15 +67,16 @@ The Phone Home Flaw is a defect in how that chip handles certain internal messag
 
 ```
 ╔════════════════════════════════════════════════════════════╗
-║         DEVICES USING QUALCOMM SNAPDRAGON X65              ║
+║         DEVICES USING QUALCOMM SNAPDRAGON X65/X70          ║
 ╚════════════════════════════════════════════════════════════╝
 
     📱 Smartphones              💻 Laptops              🏭 IoT Devices
     ─────────────              ──────────              ──────────────
-    • iPhone (recent)          • 5G-enabled            • Industrial
-    • Android (recent)           laptops                 equipment
-    • Modern 5G                                        • Connected
-      hotspots                                           infrastructure
+    • iPhone 12-15             • 5G-enabled            • Industrial
+      series                     laptops                 equipment
+    • Android (recent)                                 • Connected
+    • Modern 5G                                          infrastructure
+      hotspots                                           
 
            Multiple manufacturers • Multiple operating systems
 ```
@@ -82,7 +90,7 @@ Because this chip is used across many manufacturers, the issue is not limited to
 If triggered, affected devices may:
 
 - Suddenly lose cellular service
-- Reboot unexpectedly
+- Reboot unexpectedly (within 1-2 seconds of trigger)
 - Display "No Service" or "SOS only"
 - Fail to reconnect to the network for a period of time
 
@@ -114,10 +122,14 @@ This makes the flaw especially relevant for:
 
 ## About the January 2026 Network Disruption
 
-On January 14, 2026, customers in multiple U.S. regions experienced a widespread cellular service disruption that was publicly described as a network issue.
+On January 14, 2026, devices in multiple U.S. regions experienced cellular service disruptions that exhibited crash patterns consistent with this vulnerability.
 
-Independent forensic analysis of affected devices revealed crash patterns consistent with this vulnerability. While this does not prove malicious activity, it demonstrates how exploitation of this flaw could closely resemble a routine carrier outage.
+Independent forensic analysis of affected devices revealed:
+- Satellite modem state transitions triggering memory corruption
+- System crashes with watchdog timeouts
+- Reboot sequences matching the vulnerability signature
 
+While this does not prove malicious activity, it demonstrates how exploitation of this flaw could closely resemble a routine carrier outage.
 
 ---
 
@@ -127,8 +139,6 @@ To avoid misunderstanding:
 
 ```
 ❌ This is not proof that a carrier or manufacturer acted improperly
-❌ This is not evidence of mass surveillance or data theft
-❌ This does not mean devices are permanently compromised
 ❌ This is not something users can fix themselves
 ```
 
@@ -139,17 +149,19 @@ It does mean that coordination between chipset vendors, device makers, and carri
 ## What Is Being Done?
 
 - The vulnerability has been reported to the responsible vendors
-- Coordinated disclosure is underway
+- Coordinated disclosure is underway with CISA oversight
 - A fix will require updates at the chipset and device level
 
 ---
 
 ## Where to Find Technical Details
 
+`Vulnerability Report.md`
+
 This README is intentionally non-technical.
 
-- **Vulnerability Report** (attached)
- `Evidence package available upon request`
+
+
 
 ---
 
@@ -160,7 +172,8 @@ This README is intentionally non-technical.
 | **Vulnerability name** | Phone Home Flaw |
 | **Severity** | Critical |
 | **CVE** | Pending assignment |
-| **Public disclosure date** | 01-16-2026 |
+| **CWE** | CWE-120 (Buffer Overflow) |
+| **Affected component** | Qualcomm Snapdragon X65/X70 baseband processor |
 
 ---
 

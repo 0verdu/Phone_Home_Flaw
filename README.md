@@ -149,7 +149,7 @@ It does mean that coordination between chipset vendors, device makers, and carri
 ## What Is Being Done?
 
 - The vulnerability has been reported to the responsible vendors
-- Coordinated disclosure is underway with CISA oversight
+- Remediation is underway with CISA oversight
 - A fix will require updates at the chipset and device level
 
 ---
